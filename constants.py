@@ -88,11 +88,15 @@ AI_AGENT_MAX_ITERATIONS = 5
 
 DB_SERVICE_PATH = "./.db_service"
 DB_CUSTOMER_PATH = "./.db_customer"
+DB_FAQ_PATH = "./.db_faq"
+DB_RULE_PATH = "./.db_rule"
 
 DB_NAMES = {
     DB_COMPANY_PATH: f"{RAG_TOP_FOLDER_PATH}/company",
     DB_SERVICE_PATH: f"{RAG_TOP_FOLDER_PATH}/service",
-    DB_CUSTOMER_PATH: f"{RAG_TOP_FOLDER_PATH}/customer"
+    DB_CUSTOMER_PATH: f"{RAG_TOP_FOLDER_PATH}/customer",
+    DB_FAQ_PATH: f"{RAG_TOP_FOLDER_PATH}/faq",
+    DB_RULE_PATH: f"{RAG_TOP_FOLDER_PATH}/rule"
 }
 
 AI_AGENT_MODE_ON = "利用する"
@@ -107,6 +111,15 @@ SEARCH_CUSTOMER_COMMUNICATION_INFO_TOOL_DESCRIPTION = "顧客とのやりとり�
 SEARCH_WEB_INFO_TOOL_NAME = "search_web_tool"
 SEARCH_WEB_INFO_TOOL_DESCRIPTION = "自社サービス「HealthX」に関する質問で、Web検索が必要と判断した場合に使う"
 
+
+# ==========================================
+# AIエージェント関連（Tool定数追加）
+# ==========================================
+SEARCH_FAQ_INFO_TOOL_NAME = "search_faq_info_tool"
+SEARCH_FAQ_INFO_TOOL_DESCRIPTION = "FAQに関する情報を参照したい時に使う"
+
+SEARCH_RULE_INFO_TOOL_NAME = "search_rule_info_tool"
+SEARCH_RULE_INFO_TOOL_DESCRIPTION = "社内ルール・規程を参照したい時に使う"
 
 # ==========================================
 # プロンプトテンプレート

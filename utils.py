@@ -276,3 +276,34 @@ def adjust_string(s):
     
     # OSがWindows以外の場合はそのまま返す
     return s
+
+def run_faq_doc_chain(param):
+    """
+    FAQに関するデータ参照に特化したTool設定用の関数
+    """
+    ai_msg = st.session_state.faq_doc_chain.invoke(
+        {"input": param, "chat_history": st.session_state.chat_history}
+    )
+
+    st.session_state.chat_history.extend([
+        HumanMessage(content=param),
+        AIMessage(content=ai_msg["answer"])
+    ])
+
+    return ai_msg["answer"]
+
+
+def run_rule_doc_chain(param):
+    """
+    社内ルール・規程に関するデータ参照に特化したTool設定用の関数
+    """
+    ai_msg = st.session_state.rule_doc_chain.invoke(
+        {"input": param, "chat_history": st.session_state.chat_history}
+    )
+
+    st.session_state.chat_history.extend([
+        HumanMessage(content=param),
+        AIMessage(content=ai_msg["answer"])
+    ])
+
+    return ai_msg["answer"]

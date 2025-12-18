@@ -120,6 +120,10 @@ def initialize_agent_executor():
     st.session_state.service_doc_chain = utils.create_rag_chain(ct.DB_SERVICE_PATH)
     st.session_state.company_doc_chain = utils.create_rag_chain(ct.DB_COMPANY_PATH)
     st.session_state.rag_chain = utils.create_rag_chain(ct.DB_ALL_PATH)
+    
+    st.session_state.faq_doc_chain = utils.create_rag_chain(ct.DB_FAQ_PATH)
+    st.session_state.rule_doc_chain = utils.create_rag_chain(ct.DB_RULE_PATH)
+
 
     # Web検索用のToolを設定するためのオブジェクトを用意
     search = SerpAPIWrapper()
@@ -143,6 +147,20 @@ def initialize_agent_executor():
             func=utils.run_customer_doc_chain,
             description=ct.SEARCH_CUSTOMER_COMMUNICATION_INFO_TOOL_DESCRIPTION
         ),
+            # ===== 追加Tool① FAQ =====
+        Tool(
+            name=ct.SEARCH_FAQ_INFO_TOOL_NAME,
+            func=utils.run_faq_doc_chain,
+            description=ct.SEARCH_FAQ_INFO_TOOL_DESCRIPTION
+        ),
+
+    # ===== 追加Tool② 社内ルール =====
+        Tool(
+            name=ct.SEARCH_RULE_INFO_TOOL_NAME,
+            func=utils.run_rule_doc_chain,
+            description=ct.SEARCH_RULE_INFO_TOOL_DESCRIPTION
+        ),
+
         # Web検索用のTool
         Tool(
             name = ct.SEARCH_WEB_INFO_TOOL_NAME,
